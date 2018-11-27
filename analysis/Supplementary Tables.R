@@ -379,7 +379,6 @@ eptpropprov_main <-  rep(NA, length(sims))
 eptpropprov_pers <-  rep(NA, length(sims))
 eptpropprov_inst <-  rep(NA, length(sims))
 #eptprop_tx <-  rep(NA, length(sims))
-eptuninfectedprovided <- rep(NA, length(sims))
 #eptuninfecteduptake <- rep(NA, length(sims))
 #eptgcinfectsti <- rep(NA, length(sims))
 #eptctinfectsti <- rep(NA, length(sims))
@@ -414,7 +413,7 @@ df <- data.frame(eptcov, eptint, mainuptake, persuptake, instuptake,
                  eptpartelig, eptpartelig.step, eptdoses_index_gcct, eptdoses_rec_gcct,
                  eptpropprov_main, eptpropprov_pers, eptpropprov_inst,
 
-                 eptuninfectedprovided, eptgcctinfecthiv,
+                 eptgcctinfecthiv,
                  eptgcctinfecthiv_main, eptgcctinfecthiv_pers, eptgcctinfecthiv_inst,
 
                  eptgcctinfectundiaghiv,
@@ -577,12 +576,6 @@ for (i in seq_along(sims)) {
   #                                  " - ", round(quantile(vec.eptprop_provided, probs = qnt.high, na.rm = TRUE, names = FALSE), 2),
   #                                  ")")
 
-  # Proportion of eligible parners provided EPT who did not have any STI
-  vec.eptuninfectedprovided <- unname(colMeans(sim$epi$eptuninfectedprovided / sim$epi$eptpartprovided, na.rm = TRUE))
-  df$eptuninfectedprovided[i] <- paste0(round(quantile(vec.eptuninfectedprovided, probs = 0.50, na.rm = TRUE, names = FALSE), 2),
-                                        " (", round(quantile(vec.eptuninfectedprovided, probs = qnt.low, na.rm = TRUE, names = FALSE), 2),
-                                        " - ", round(quantile(vec.eptuninfectedprovided, probs = qnt.high, na.rm = TRUE, names = FALSE), 2),
-                                        ")")
 
   # Proportion of eligible parners who uptook EPT who did not have any STI
   # vec.eptuninfecteduptake <- unname(colMeans(sim$epi$eptuninfecteduptake / sim$epi$eptpartuptake, na.rm = TRUE))
