@@ -23,6 +23,10 @@
 # RStudio files
 .Rproj.user/
 
+# Other files
+*.jpg
+*.jpeg
+
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
