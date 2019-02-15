@@ -11,6 +11,7 @@
 # Data files
 *.rda
 *.csv
+*/.csv
 
 # R project
 *.Rproj
