@@ -116,7 +116,7 @@ netsim_hpc("est/sti.tnt.burnin.rda", param, init, control,
 
 process_simfiles(simno = simno, min.n = njobs,
                  outdir = "data/", compress = TRUE, delete.sub = TRUE,
-                 truncate.at = 5200,
+                 truncate.at = 2600,
                  vars =
                    c(# HIV
                      "incid", "ir100", "hivtests.nprep", "i.prev",
