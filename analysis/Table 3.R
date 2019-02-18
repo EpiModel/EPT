@@ -17,7 +17,10 @@ library("dplyr")
 load("data/sim.n8000.rda")
 sim.base <- sim
 
-incid.base.gcct <- unname(colSums(sim.base$epi$incid.gcct))
+incid.base.gcct <- unname(colSums(sim.base$epi$incid.rct)) +
+  unname(colSums(sim.base$epi$incid.uct)) +
+  unname(colSums(sim.base$epi$incid.rgc)) +
+  unname(colSums(sim.base$epi$incid.ugc))
 
 #Maincov: 8023-8032, cascov: 8039-8048, instcov: 8055-8064
 sims <- c(8000, 8023:8032, 8039:8048, 8055:8064)
@@ -79,14 +82,17 @@ for (i in seq_along(sims)) {
   df$cttxsuccess[i] <- sim$param$ept.ct.success
 
   # Incidence Rate over last year
-  vec.ir.gcct <- unname(colMeans(tail(sim$epi$ir100.gcct, 52)))
+  vec.ir.gcct <- unname(colMeans(tail(sim$epi$ir100.ct, 52))) + unname(colMeans(tail(sim$epi$ir100.gc, 52)))
   df$gcct.incid[i] <- paste0(round(quantile(vec.ir.gcct, probs = 0.50, na.rm = TRUE, names = FALSE), 2),
                              " (", round(quantile(vec.ir.gcct, probs = qnt.low, na.rm = TRUE, names = FALSE), 2),
                              " - ", round(quantile(vec.ir.gcct, probs = qnt.high, na.rm = TRUE, names = FALSE), 2),
                              ")")
 
   # PIA (Cumulative)
-  incid.gcct <- unname(colSums(sim$epi$incid.gcct))
+  incid.gcct <- unname(colSums(sim$epi$incid.rct)) +
+    unname(colSums(sim$epi$incid.uct)) +
+    unname(colSums(sim$epi$incid.rgc)) +
+    unname(colSums(sim$epi$incid.ugc))
   vec.nia.gcct <- incid.base.gcct - incid.gcct
   vec.pia.gcct <- vec.nia.gcct/incid.base.gcct
 
@@ -107,7 +113,8 @@ for (i in seq_along(sims)) {
   #                       ")")
 
   # Number of doses provided to index partners
-  eptdoses.gcct <- unname(colSums(sim$epi$eptindexprovided_gc, na.rm = TRUE)) + unname(colSums(sim$epi$eptindexprovided_ct, na.rm = TRUE))
+  eptdoses.gcct <- unname(colSums(sim$epi$eptindexprovided_gc, na.rm = TRUE)) +
+    unname(colSums(sim$epi$eptindexprovided_ct, na.rm = TRUE))
   #
   # if (is.na(mean(eptdoses.gcct))) {
   #   eptdoses.gcct <- rep(0, 256)
@@ -131,7 +138,8 @@ for (i in seq_along(sims)) {
 
 
   # Number of doses taken by partners
-  eptdosesupt.gcct <- unname(colSums(sim$epi$eptpartuptake_gc, na.rm = TRUE)) + unname(colSums(sim$epi$eptpartuptake_ct, na.rm = TRUE))
+  eptdosesupt.gcct <- unname(colSums(sim$epi$eptpartuptake_gc, na.rm = TRUE)) +
+    unname(colSums(sim$epi$eptpartuptake_ct, na.rm = TRUE))
 
   if (is.na(mean(eptdosesupt.gcct))) {
     eptdosesupt.gcct <- rep(0, 256)
