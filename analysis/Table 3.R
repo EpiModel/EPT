@@ -17,10 +17,9 @@ library("dplyr")
 load("data/sim.n8000.rda")
 sim.base <- sim
 
-incid.base.gcct <- unname(colSums(sim.base$epi$incid.rct)) +
-  unname(colSums(sim.base$epi$incid.uct)) +
-  unname(colSums(sim.base$epi$incid.rgc)) +
-  unname(colSums(sim.base$epi$incid.ugc))
+
+incid.base.gcct <- unname(colSums(sim.base$epi$incid.ct)) +
+  unname(colSums(sim.base$epi$incid.gc))
 
 #Maincov: 8023-8032, cascov: 8039-8048, instcov: 8055-8064
 sims <- c(8000, 8023:8032, 8039:8048, 8055:8064)
@@ -89,10 +88,8 @@ for (i in seq_along(sims)) {
                              ")")
 
   # PIA (Cumulative)
-  incid.gcct <- unname(colSums(sim$epi$incid.rct)) +
-    unname(colSums(sim$epi$incid.uct)) +
-    unname(colSums(sim$epi$incid.rgc)) +
-    unname(colSums(sim$epi$incid.ugc))
+  incid.gcct <- unname(colSums(sim$epi$incid.ct)) +
+    unname(colSums(sim$epi$incid.gc))
   vec.nia.gcct <- incid.base.gcct - incid.gcct
   vec.pia.gcct <- vec.nia.gcct/incid.base.gcct
 
