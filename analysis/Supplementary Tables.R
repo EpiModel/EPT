@@ -471,19 +471,19 @@ for (i in seq_along(sims)) {
 
   # EPT Partner Proportion Provided
   vec.mainprov <- unname(colMeans(sim$epi$eptpartprovided_main / sim$epi$eptpartelig_main, na.rm = TRUE))
-  df$eptpropprov_main[i] <- paste0(round(quantile(vec.mainprov, probs = 0.50, na.rm = TRUE, names = FALSE), 0),
-                                   " (", round(quantile(vec.mainprov, probs = qnt.low, na.rm = TRUE, names = FALSE), 0),
-                                   " - ", round(quantile(vec.mainprov, probs = qnt.high, na.rm = TRUE, names = FALSE), 0),
+  df$eptpropprov_main[i] <- paste0(round(quantile(vec.mainprov, probs = 0.50, na.rm = TRUE, names = FALSE), 2),
+                                   " (", round(quantile(vec.mainprov, probs = qnt.low, na.rm = TRUE, names = FALSE), 2),
+                                   " - ", round(quantile(vec.mainprov, probs = qnt.high, na.rm = TRUE, names = FALSE), 2),
                                    ")")
   vec.casprov <- unname(colMeans(sim$epi$eptpartprovided_pers / sim$epi$eptpartelig_pers, na.rm = TRUE))
-  df$eptpropprov_pers[i] <- paste0(round(quantile(vec.casprov, probs = 0.50, na.rm = TRUE, names = FALSE), 0),
-                                   " (", round(quantile(vec.casprov, probs = qnt.low, na.rm = TRUE, names = FALSE), 0),
-                                   " - ", round(quantile(vec.casprov, probs = qnt.high, na.rm = TRUE, names = FALSE), 0),
+  df$eptpropprov_pers[i] <- paste0(round(quantile(vec.casprov, probs = 0.50, na.rm = TRUE, names = FALSE), 2),
+                                   " (", round(quantile(vec.casprov, probs = qnt.low, na.rm = TRUE, names = FALSE), 2),
+                                   " - ", round(quantile(vec.casprov, probs = qnt.high, na.rm = TRUE, names = FALSE), 2),
                                    ")")
   vec.instprov <- unname(colMeans(sim$epi$eptpartprovided_inst / sim$epi$eptpartelig_inst, na.rm = TRUE))
-  df$eptpropprov_inst[i] <- paste0(round(quantile(vec.instprov, probs = 0.50, na.rm = TRUE, names = FALSE), 0),
-                                   " (", round(quantile(vec.instprov, probs = qnt.low, na.rm = TRUE, names = FALSE), 0),
-                                   " - ", round(quantile(vec.instprov, probs = qnt.high, na.rm = TRUE, names = FALSE), 0),
+  df$eptpropprov_inst[i] <- paste0(round(quantile(vec.instprov, probs = 0.50, na.rm = TRUE, names = FALSE), 2),
+                                   " (", round(quantile(vec.instprov, probs = qnt.low, na.rm = TRUE, names = FALSE), 2),
+                                   " - ", round(quantile(vec.instprov, probs = qnt.high, na.rm = TRUE, names = FALSE), 2),
                                    ")")
 
   # Number of doses provided to index partners
