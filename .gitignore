@@ -27,6 +27,7 @@
 # Other files
 *.jpg
 *.jpeg
+*.tiff
 
 # produced vignettes
 vignettes/*.html
