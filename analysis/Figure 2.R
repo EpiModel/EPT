@@ -22,7 +22,7 @@ pal <- viridis::viridis(n = length(sims), option = "D")
 for (i in seq_along(sims)) {
   fn <- list.files("data", pattern = as.character(sims[i]), full.names = TRUE)
   load(fn)
-  #sim <- mutate_epi(sim, ir100.gcct = sum(ir100.ct, ir100.gc))
+  #sim <- mutate_epi(sim, ir100.gcct = ir100.ct + ir100.gc)
   plot(sim, y = "ir100.gcct", add = i > 1,
        mean.col = pal[i], qnts.col = pal[i], qnts.alpha = 0.3, qnts = 0.0,
        main = "All Partners",
@@ -35,7 +35,7 @@ pal <- viridis::viridis(n = length(sims), option = "D")
 for (i in seq_along(sims)) {
   fn <- list.files("data", pattern = as.character(sims[i]), full.names = TRUE)
   load(fn)
-  #sim <- mutate_epi(sim, ir100.gcct = sum(ir100.ct, ir100.gc))
+  #sim <- mutate_epi(sim, ir100.gcct = ir100.ct + ir100.gc)
   plot(sim, y = "ir100.gcct", add = i > 1,
        mean.col = pal[i], qnts.col = pal[i], qnts.alpha = 0.3, qnts = 0.0,
        main = "Main Partners",
@@ -49,7 +49,7 @@ pal <- viridis::viridis(n = length(sims), option = "D")
 for (i in seq_along(sims)) {
   fn <- list.files("data", pattern = as.character(sims[i]), full.names = TRUE)
   load(fn)
-  #sim <- mutate_epi(sim, ir100.gcct = sum(ir100.ct, ir100.gc))
+  #sim <- mutate_epi(sim, ir100.gcct = ir100.ct + ir100.gc)
   plot(sim, y = "ir100.gcct", add = i > 1,
        mean.col = pal[i], qnts.col = pal[i], qnts.alpha = 0.3, qnts = 0.0,
        main = "Casual Partners",
@@ -63,7 +63,7 @@ pal <- viridis::viridis(n = length(sims), option = "D")
 for (i in seq_along(sims)) {
   fn <- list.files("data", pattern = as.character(sims[i]), full.names = TRUE)
   load(fn)
-  #sim <- mutate_epi(sim, ir100.gcct = sum(ir100.ct, ir100.gc))
+  #sim <- mutate_epi(sim, ir100.gcct = ir100.ct + ir100.gc)
   plot(sim, y = "ir100.gcct", add = i > 1,
        mean.col = pal[i], qnts.col = pal[i], qnts.alpha = 0.3, qnts = 0.0,
        main = "One-Time Partners",
