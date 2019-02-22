@@ -499,9 +499,10 @@ for (i in seq_along(sims)) {
 
   # EPT Partners Provided (e.g. doses given from index to partners)
   vec.eptpartprovided <- unname(colSums(sim$epi$eptpartprovided_gc, na.rm = TRUE)) + unname(colSums(sim$epi$eptpartprovided_ct, na.rm = TRUE))
-  df$eptdoses_rec_gcct[i] <- paste0(round(quantile(vec.eptpartprovided, probs = 0.50, na.rm = TRUE, names = FALSE), 2),
-                                  " (", round(quantile(vec.eptpartprovided, probs = qnt.low, na.rm = TRUE, names = FALSE), 2),
-                                  " - ", round(quantile(vec.eptpartprovided, probs = qnt.high, na.rm = TRUE, names = FALSE), 2),
+  df$eptdoses_rec_gcct[i] <- paste0(round(quantile(vec.eptpartprovided, probs = 0.50, na.rm = TRUE, names = FALSE), 0),
+                                  " (", round(quantile(vec.eptpartprovided, probs = qnt.low, na.rm = TRUE, names = FALSE), 0),
+                                  " - ", round(quantile(vec.eptpartprovided, probs = qnt.high, na.rm = TRUE, names = FALSE), 0
+                                               ),
                                   ")")
   # vec.eptpartprovided_gc <- unname(colMeans(sim$epi$eptpartprovided_gc, na.rm = TRUE))
   # df$eptpartprovided_gc[i] <- paste0(round(quantile(vec.eptpartprovided_gc, probs = 0.50, na.rm = TRUE, names = FALSE), 2),
