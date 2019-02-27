@@ -26,7 +26,7 @@ for (i in seq_along(sims)) {
   plot(sim, y = "ir100.gcct", add = i > 1,
        mean.col = pal[i], qnts.col = pal[i], qnts.alpha = 0.3, qnts = 0.0,
        main = "All Partners",
-       xlab = "Week", ylab = "IR per 100 PYAR", ylim = c(0, 11))
+       xlab = "Week", ylab = "IR per 100 PYAR", ylim = c(0, 12))
 }
 legend("bottomleft", legend = c("0%", "20%", "40%", "60%", "80%", "100%"),
        col = pal, lwd = 3, cex = 0.85, bty = "n")
@@ -39,7 +39,7 @@ for (i in seq_along(sims)) {
   plot(sim, y = "ir100.gcct", add = i > 1,
        mean.col = pal[i], qnts.col = pal[i], qnts.alpha = 0.3, qnts = 0.0,
        main = "Main Partners",
-       xlab = "Week", ylab = "IR per 100 PYAR", ylim = c(0, 11))
+       xlab = "Week", ylab = "IR per 100 PYAR", ylim = c(0, 12))
 }
 legend("bottomleft", legend = c("0%", "20%", "40%", "60%", "80%", "100%"),
        col = pal, lwd = 3, cex = 0.85, bty = "n")
@@ -53,7 +53,7 @@ for (i in seq_along(sims)) {
   plot(sim, y = "ir100.gcct", add = i > 1,
        mean.col = pal[i], qnts.col = pal[i], qnts.alpha = 0.3, qnts = 0.0,
        main = "Casual Partners",
-       xlab = "Week", ylab = "IR per 100 PYAR", ylim = c(0, 11))
+       xlab = "Week", ylab = "IR per 100 PYAR", ylim = c(0, 12))
 }
 legend("bottomleft", legend = c("0%", "20%", "40%", "60%", "80%", "100%"),
        col = pal, lwd = 3, cex = 0.85, bty = "n")
@@ -67,7 +67,7 @@ for (i in seq_along(sims)) {
   plot(sim, y = "ir100.gcct", add = i > 1,
        mean.col = pal[i], qnts.col = pal[i], qnts.alpha = 0.3, qnts = 0.0,
        main = "One-Time Partners",
-       xlab = "Week", ylab = "IR per 100 PYAR", ylim = c(0, 11))
+       xlab = "Week", ylab = "IR per 100 PYAR", ylim = c(0, 12))
 }
 legend("bottomleft", legend = c("0%", "20%", "40%", "60%", "80%", "100%"),
        col = pal, lwd = 3, cex = 0.85, bty = "n")
