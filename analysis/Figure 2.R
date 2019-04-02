@@ -75,7 +75,7 @@ for (i in seq_along(sims)) {
 legend("bottomleft", legend = c("0% coverage", "20% coverage", "40% coverage",
                                 "60% coverage" , "80% coverage", "100% coverage"),
        col = pal, lwd = 3, cex = 0.85, bty = "n")
-mtext("Incidence Rates by EPT Coverage with Provision Limited by Type of Partnership",
+mtext("Figure 2: Incidence Rates (IR) by EPT Coverage with Provision Limited by Type of Partnership",
       outer = TRUE, cex = 1.5)
 
 dev.off()
