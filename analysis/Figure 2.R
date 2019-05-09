@@ -61,7 +61,7 @@ legend("bottomleft", legend = c("0% coverage", "20% coverage", "40% coverage",
                                 "60% coverage" , "80% coverage", "100% coverage"),
        col = pal, lwd = 3, cex = 0.85, bty = "n")
 
-sims <- c(8000, 8055:8064)
+sims <- c(8000, 8056, 8058, 8060, 8062, 8064)
 pal <- viridis::viridis(n = length(sims), option = "D")
 for (i in seq_along(sims)) {
   fn <- list.files("data", pattern = as.character(sims[i]), full.names = TRUE)
@@ -75,7 +75,7 @@ for (i in seq_along(sims)) {
 legend("bottomleft", legend = c("0% coverage", "20% coverage", "40% coverage",
                                 "60% coverage" , "80% coverage", "100% coverage"),
        col = pal, lwd = 3, cex = 0.85, bty = "n")
-mtext("Figure 2: Incidence Rates (IR) by EPT Coverage with Provision Limited by Type of Partnership",
-      outer = TRUE, cex = 1.5)
+# mtext("Figure 2: Incidence Rates (IR) by EPT Coverage with Provision Limited by Type of Partnership",
+#       outer = TRUE, cex = 1.5)
 
 dev.off()
