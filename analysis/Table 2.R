@@ -38,26 +38,21 @@ instprov <- rep(NA, length(sims))
 gctxsuccess <- rep(NA, length(sims))
 cttxsuccess <- rep(NA, length(sims))
 
-#eptTx <-  rep(NA, length(sims))
-# eptdoses_index_gcct <- rep(NA, length(sims))
-# eptdoses_rec_gcct <- rep(NA, length(sims))
-eptdoses_uptake_gcct <- rep(NA, length(sims))
-eptuninfectedprovided <- rep(NA, length(sims))
-
 gcct.incid <- rep(NA, length(sims))
 gcct.pia <- rep(NA, length(sims))
 gcct.nia <- rep(NA, length(sims))
 gcct.nnt <- rep(NA, length(sims))
 
 sti.timesInf <- rep(NA, length(sims))
+hiv.undiag <- rep(NA, length(sims))
+eptuninfectedprovided <- rep(NA, length(sims))
 
 df <- data.frame(eptcov, eptint, mainuptake, persuptake, instuptake,
                  mainongprov, mainendprov, persongprov, persendprov, instprov,
                  gctxsuccess, cttxsuccess,
 
-                 gcct.incid, gcct.pia, #eptdoses_index_gcct, eptdoses_rec_gcct,
-                 eptdoses_uptake_gcct, gcct.nia, gcct.nnt, sti.timesInf,
-                 eptuninfectedprovided
+                 gcct.incid, gcct.pia, gcct.nia, gcct.nnt, sti.timesInf,
+                 hiv.undiag, eptuninfectedprovided
 )
 
 for (i in seq_along(sims)) {
@@ -102,50 +97,12 @@ for (i in seq_along(sims)) {
                            ", ", round(quantile(vec.pia.gcct, probs = qnt.high, na.rm = TRUE, names = FALSE), 2),
                            ")")
 
-  # Number of partners treated in a time step
-  # vec.eptTx <- unname(colMeans(sim$epi$eptTx, na.rm = TRUE))
-  # df$eptTx[i] <- paste0(round(quantile(vec.eptTx, probs = 0.50, na.rm = TRUE, names = FALSE), 2),
-  #                       " (", round(quantile(vec.eptTx, probs = qnt.low, na.rm = TRUE, names = FALSE), 2),
-  #                       ", ", round(quantile(vec.eptTx, probs = qnt.high, na.rm = TRUE, names = FALSE), 2),
-  #                       ")")
-
+  # Doses
   # Number of doses provided to index partners
   eptdoses.gcct <- unname(colSums(sim$epi$eptindexprovided_gc, na.rm = TRUE)) +
     unname(colSums(sim$epi$eptindexprovided_ct, na.rm = TRUE))
-  #
-  # if (is.na(mean(eptdoses.gcct))) {
-  #   eptdoses.gcct <- rep(0, 256)
-  # }
-  # df$eptdoses_index_gcct[i] <- paste0(round(quantile(eptdoses.gcct, probs = 0.50, na.rm = TRUE, names = FALSE), 0),
-  #                                     " (", round(quantile(eptdoses.gcct, probs = qnt.low, na.rm = TRUE, names = FALSE), 0),
-  #                                     ", ", round(quantile(eptdoses.gcct, probs = qnt.high, na.rm = TRUE, names = FALSE), 0),
-  #                                     ")")
-  #
-  # # Number of doses provided to non-index partners from index
-  # eptdosesrec.gcct <- unname(colSums(sim$epi$eptpartprovided_gc, na.rm = TRUE)) + unname(colSums(sim$epi$eptpartprovided_ct, na.rm = TRUE))
-  #
-  # if (is.na(mean(eptdoses.gcct))) {
-  #   eptdosesrec.gcct <- rep(0, 256)
-  # }
-  #
-  # df$eptdoses_rec_gcct[i] <- paste0(round(quantile(eptdosesrec.gcct, probs = 0.50, na.rm = TRUE, names = FALSE), 0),
-  #                                   " (", round(quantile(eptdosesrec.gcct, probs = qnt.low, na.rm = TRUE, names = FALSE), 0),
-  #                                   ", ", round(quantile(eptdosesrec.gcct, probs = qnt.high, na.rm = TRUE, names = FALSE), 0),
-  #                                   ")")
 
-
-  # Number of doses taken by partners
-  eptdosesupt.gcct <- unname(colSums(sim$epi$eptpartuptake_gc, na.rm = TRUE)) +
-    unname(colSums(sim$epi$eptpartuptake_ct, na.rm = TRUE))
-
-  if (is.na(mean(eptdosesupt.gcct))) {
-    eptdosesupt.gcct <- rep(0, 256)
-  }
-  df$eptdoses_uptake_gcct[i] <- paste0(round(quantile(eptdosesupt.gcct, probs = 0.50, na.rm = TRUE, names = FALSE), 0),
-                                       " (", round(quantile(eptdosesupt.gcct, probs = qnt.low, na.rm = TRUE, names = FALSE), 0),
-                                       ", ", round(quantile(eptdosesupt.gcct, probs = qnt.high, na.rm = TRUE, names = FALSE), 0),
-                                       ")")
-
+  # NNT
   vec.gcct.nnt <- (eptdoses.gcct) / (incid.base.gcct - incid.gcct)
 
   if (is.nan(mean(vec.gcct.nnt))) {
@@ -157,18 +114,25 @@ for (i in seq_along(sims)) {
                            ", ", round(quantile(vec.gcct.nnt, probs = qnt.high, na.rm = TRUE, names = FALSE), 2),
                            ")")
 
-
+  # Per-capita number of times infected with an STI
   sti.timesInf <- unname(colMeans(tail(sim$epi$sti.timesInf, 52)))
   df$sti.timesInf[i] <- paste0(round(quantile(sti.timesInf, probs = 0.50, na.rm = TRUE, names = FALSE), 2),
                                " (", round(quantile(sti.timesInf, probs = qnt.low, na.rm = TRUE, names = FALSE), 2),
                                ", ", round(quantile(sti.timesInf, probs = qnt.high, na.rm = TRUE, names = FALSE), 2),
                                ")")
 
-  # Proportion of eligible parners provided EPT who did not have any STI
+  # Prevalence of undiagnosed HIV infection among partners
+  hiv.undiag <- unname(colMeans(sim$epi$eptgcctinfectundiaghiv / sim$epi$eptpartprovided, na.rm = TRUE))
+  df$hiv.undiag[i] <- paste0(round(quantile(100*hiv.undiag, probs = 0.50, na.rm = TRUE, names = FALSE), 2),
+                               " (", round(quantile(100*hiv.undiag, probs = qnt.low, na.rm = TRUE, names = FALSE), 2),
+                               ", ", round(quantile(100*hiv.undiag, probs = qnt.high, na.rm = TRUE, names = FALSE), 2),
+                               ")")
+
+  # Percent of eligible parners provided EPT who did not have any STI
   vec.eptuninfectedprovided <- unname(colMeans(sim$epi$eptuninfectedprovided / sim$epi$eptpartprovided, na.rm = TRUE))
-  df$eptuninfectedprovided[i] <- paste0(round(quantile(vec.eptuninfectedprovided, probs = 0.50, na.rm = TRUE, names = FALSE), 2),
-                                        " (", round(quantile(vec.eptuninfectedprovided, probs = qnt.low, na.rm = TRUE, names = FALSE), 2),
-                                        ", ", round(quantile(vec.eptuninfectedprovided, probs = qnt.high, na.rm = TRUE, names = FALSE), 2),
+  df$eptuninfectedprovided[i] <- paste0(round(quantile(100*vec.eptuninfectedprovided, probs = 0.50, na.rm = TRUE, names = FALSE), 2),
+                                        " (", round(quantile(100*vec.eptuninfectedprovided, probs = qnt.low, na.rm = TRUE, names = FALSE), 2),
+                                        ", ", round(quantile(100*vec.eptuninfectedprovided, probs = qnt.high, na.rm = TRUE, names = FALSE), 2),
                                         ")")
 
   cat("*")
