@@ -7,7 +7,7 @@ This repository holds the source to code to reproduce the analysis featured in o
 
 ## Citation
 
-> Weiss KM, Jones JS, Katz DA, Gift TL, Bernstein K, Workowski K, Rosenberg ES, Jenness SM. Epidemiological impact of expedited partner therapy for men who have sex with men: A modeling study. _Under Review._ . 
+> Weiss KM, Jones JS, Katz DA, Gift TL, Bernstein K, Workowski K, Rosenberg ES, Jenness SM. Epidemiological impact of expedited partner therapy for men who have sex with men: A modeling study. _Under Review._
 
 <img src="https://github.com/EpiModel/EPT/raw/master/analysis/Fig1.png">
 
