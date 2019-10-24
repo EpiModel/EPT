@@ -8,8 +8,7 @@ This repository holds the source to code to reproduce the analysis featured in o
 
 <img src="https://github.com/EpiModel/EPT/raw/master/analysis/Fig1.png">
 
-Additional details may be found in the journal article:
-PubMed: https://www.ncbi.nlm.nih.gov/pubmed/31644497
+Additional details may be found in the journal article: https://www.ncbi.nlm.nih.gov/pubmed/31644497
 
 ### Abstract
 
