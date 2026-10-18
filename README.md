@@ -2,9 +2,15 @@
 
 This repository holds the source to code to reproduce the analysis featured in our STI and HIV transmission model among men who have sex with men in the United States. This study investigated the possible implementation of EPT for MSM in the United States, evaluating different scale-up strategies along an EPT continuum -- from provision of EPT medication to index partners by health care providers, provision of EPT medication to non-index partners bys index patients, uptake of EPT medication by non-index partners, and treatment efficacy among non-index partners -- and the impact on STI incidence among MSM.
 
-### Citation
+### Paper and engine
 
-> Weiss KM, Jones JS, Katz DA, Gift TL, Bernstein K, Workowski K, Rosenberg ES, Jenness SM. Epidemiological Impact of Expedited Partner Therapy for Men Who Have Sex With Men: A Modeling Study. Sex Transm Dis. 2019;46(11):697-705.
+> Weiss KM, Jones JS, Katz DA, Gift TL, Bernstein K, Workowski K, Rosenberg ES, Jenness SM. Epidemiological Impact of Expedited Partner Therapy for Men Who Have Sex With Men: A Modeling Study. _Sex Transm Dis._ 2019; 46(11): 697-705. [doi:10.1097/OLQ.0000000000001058](https://doi.org/10.1097/OLQ.0000000000001058)
+
+The EpiModelHIV engine for this paper is release [`ept`](https://github.com/EpiModel/EpiModelHIV/releases/tag/ept) of EpiModel/EpiModelHIV. Install it with:
+
+```r
+remotes::install_github("EpiModel/EpiModelHIV@ept")
+```
 
 <img src="https://github.com/EpiModel/EPT/raw/master/analysis/Fig1.png">
 
